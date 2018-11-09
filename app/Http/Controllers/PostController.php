@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use DB;
+use Validator;
 
 class PostController extends Controller
 {
@@ -16,7 +17,8 @@ class PostController extends Controller
     public function index()
     {
         //show the add post page
-        
+        $title = 'Add Post';
+        return view('AddPost')->with('title', $title);
     }
 
     /**
@@ -24,9 +26,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //collect user data and validate it
+        //send the validate data to store method
+        $data = $request->all();
+        //set validation rules
+            $validatedData = $request->validate([
+                "name"     => "required|min:5",
+                "email"  => "required",
+                "title"  => "required|min:5",
+                "body"  => "required|min:5|max:500",
+                ]);
+
+            return $data;
     }
 
     /**

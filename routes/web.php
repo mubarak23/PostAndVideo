@@ -18,9 +18,14 @@
 Route::get('/', function(){
 		return view('home');
 });
+
+Route::get('/add_post', 'PostController@index');
+
+/*
 Route::get('/add_post', function(){
 		return view('AddPost');
-});
+});*/
+
 Route::get('/add_video', function(){
 		return view('AddVideo');
 });
