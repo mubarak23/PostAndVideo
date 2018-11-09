@@ -15,8 +15,8 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">Posts</a></li>
             <li><a href="#contact">Videos</a></li>
-            <li><a href="#about" class="pull-right">Add Post</a></li>
-            <li><a href="#contact" class="pull-right">Add Video</a></li>
+            <li><a href="{{ url('/add_post') }}" class="pull-right">Add Post</a></li>
+            <li><a href="{{ url('add_video') }}" class="pull-right">Add Video</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
