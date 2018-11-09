@@ -36,10 +36,24 @@ class PostController extends Controller
                 "name"     => "required|min:5",
                 "email"  => "required",
                 "title"  => "required|min:5",
-                "body"  => "required|min:5|max:500",
+                "body"  => "required|min:5|max:500"
                 ]);
 
-            return $data;
+            DB::beginTransaction();
+            try{
+                $process_store = self::store($data);
+                if($process_store){ 
+                    //return home
+                    return redirect('')->route('home')->with('status', 'Add Post Successfully');
+                }else{
+                    //send back an error message
+                    return redirect()->back()->withInput()->with('status', 'Unable to Add Post at This Time');
+                }
+               DB::commit(); 
+            }catch(Exception $e){
+                   throw $e;
+                   DB::rollback(); 
+            }
     }
 
     /**
@@ -48,9 +62,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($data);
     {
-        //
+        //Create a new post model
+        $add_post = new Post();
+        $add_post->name = $data['name'];
+        $add->email = $data['email'];
+        $add_post->title = $data['title'];
+        $add_post->body = $data['body'];
+        $add_post->save();
+        return $add_post;
     }
 
     /**

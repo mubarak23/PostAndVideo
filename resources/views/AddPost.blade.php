@@ -5,7 +5,8 @@
 	<div class="row">
 		<div class="col-md-6">
 			 <h1>{{ $title }}</h1>
-        <form>
+        <form action="/process_post" enctype="multipart/form-data" method="post">
+        	{{ csrf_field() }}
         	<div class="form-group">
         		<label>Name</label>
         		

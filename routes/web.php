@@ -17,10 +17,11 @@
 
 Route::get('/', function(){
 		return view('home');
-});
+})->name('home');
 
 Route::get('/add_post', 'PostController@index');
 
+Route::post('/process_post', 'PostController@create');	
 /*
 Route::get('/add_post', function(){
 		return view('AddPost');

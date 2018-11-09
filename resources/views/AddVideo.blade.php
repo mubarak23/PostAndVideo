@@ -6,6 +6,7 @@
         <div class="col-md-6">
              <h1>Add Video</h1>
         <form>
+            {{ csrf_field() }}
             <div class="form-group">
                 <label>Name</label>
                 
