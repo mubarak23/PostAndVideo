@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+//use Illuminate\Support\Facades\Request;
 use File;
 use DB;
+use app\VideoComment;
 
 class VideoController extends Controller
 {
@@ -46,6 +48,7 @@ class VideoController extends Controller
         //collect user data and validate it
         //send the validate data to store method
         $data = $request->all();
+        //return $request->file('video');
         //set validation rules
             $validatedData = $request->validate([
                 "name"     => "required|min:5",
@@ -54,6 +57,7 @@ class VideoController extends Controller
                 "video"  => "required|min:5|max:500"
                 ]);
             //process video to Storage Location
+             
             if ($request->hasFile('video')) {
             $request->file('video');
             $filename = $request->image->getClientOriginalName();
@@ -108,7 +112,12 @@ class VideoController extends Controller
      */
     public function show(video $video)
     {
-        
+        //show details of single post
+        $title = "Single Video Details";
+        $video_details = video::find($id);
+        //pull list of comment attarch to this post
+        $video_comment = VideoComment::where('post_id', $id)->get();
+        return view('single_details')->with(['title' => $title, 'video_details' => $video_details, 'comment' => $video_comment]);
     }
 
     /**

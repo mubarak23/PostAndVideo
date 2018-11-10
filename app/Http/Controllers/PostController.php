@@ -98,7 +98,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //return $id;
+        
         //show details of single post
         $title = "Single Post Details";
         $post_details = Post::find($id);

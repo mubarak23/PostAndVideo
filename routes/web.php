@@ -32,7 +32,7 @@ Route::get('/edit_post/{id}', 'PostController@edit');
 Route::post('process_edit/{id}', 'PostController@update');
 Route::get('/delete/{id}', 'PostController@destroy');
 
-//post Developer
+//post comment
 Route::post('/post_comment', 'PostCommentController@store');
 
 
@@ -43,7 +43,8 @@ Route::get('/add_video', 'VideoController@AddVideo');
 Route::post('/process_video', 'VideoController@create');
 Route::get('/edit_video/{id}', 'VideoController@create');
 Route::post('/process_editvideo/{id}', 'VideoController@update');
-
+//video comment
+Route::post('/post_comment', 'PostCommentController@store');
 /*Route::get('/add_video', function(){
 		return view('AddVideo');
 });*/

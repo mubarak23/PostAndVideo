@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label>Upload Video</label>
                 
-                <input type="file" name="video" value="{{ old('video') }}"  class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" >
+                <input type="file" name="video" value="{{ old('video') }}"  class="form-control{{ $errors->has('video') ? ' is-invalid' : '' }}" >
                 @if ($errors->has('video'))
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('video') }}</strong>
