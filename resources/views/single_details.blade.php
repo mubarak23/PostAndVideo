@@ -18,7 +18,7 @@
 		    <h4>{{ $post_details->body}}</h4>
 		    <hr>
 		    <h3>Drop Comment Here</h3>
-		    <form>
+		    <form action="/process_comment" enctype="multipart/form-data" method="post">
 		    	<div class="form-group">
 		    		<label>Email Address</label>
 		    		<input type="text" name="email" class="form-control">	

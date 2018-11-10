@@ -32,6 +32,9 @@ Route::post('/process_post', 'PostController@create');
 Route::get('/edit_post/{id}', 'PostController@edit');
 Route::post('process_edit/{id}', 'PostController@update');
 
+//post Developer
+Route::post('/post_comment', 'PostCommentController@store');
+
 
 //Video Route
 Route::get('/add_video', 'VideoController@index');

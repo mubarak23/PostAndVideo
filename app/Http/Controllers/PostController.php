@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\PostComment;
 use Illuminate\Http\Request;
 use DB;
 use Validator;
@@ -97,11 +98,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //return $id;
         //show details of single post
         $title = "Single Post Details";
         $post_details = Post::find($id);
-        return view('single_details')->with(['title' => $title, 'post_details' => $post_details]);
+        //pull list of comment attarch to this post
+        $post_comment = PostComment::where('post_id', $id)->get();
+        return view('single_details')->with(['title' => $title, 'post_details' => $post_details, 'comment' => $post_comment]);
     }
 
     /**

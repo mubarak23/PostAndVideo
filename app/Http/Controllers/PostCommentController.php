@@ -36,6 +36,31 @@ class PostCommentController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $validatedData = $request->validate([
+                "email"  => "required",
+                "comment"  => "required|min:5"
+                ]);
+          DB::beginTransaction();
+            try{
+                $process_comment = new PostComment();
+                $process_comment->post_id = $data['post_id'];
+                $process_comment->email = $data['email'];
+                $process_comment->comment = $data['comment'];
+                DB::commit();
+                if($process_comment){ 
+                    //return home
+                    return redirect()->route('posts')->with('status', 'Add Comment Successfully');
+                }else{
+                    //send back an error message
+                    return redirect()->back()->withInput()->with('status', 'Unable to Add Comment at This Time');
+                }
+                
+            }catch(Exception $e){
+                   throw $e;
+                   DB::rollback(); 
+            }
+
     }
 
     /**
