@@ -2,15 +2,12 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
-  		<div class="col-md-6">
-  			@foreach($all_business as $business)
-  	<div class="wall">
-    <h3>{{ article.title }}</h3>
-    </div>
-    @endforeach();
-  		</div>
-  </div>		
-</div><!-- /.container -->
+
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+
+    </div><!-- /.container -->
 
     @endsection

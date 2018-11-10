@@ -16,6 +16,19 @@ class PostController extends Controller
      */
     public function index()
     {
+        //show all post with pagination
+        $title = "All Posts";
+        $posts = Post::all()->pagination(10);
+        return view('posts')->with(['all_posts' => $posts, 'title' => $title ])
+
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addPost()
+    {
         //show the add post page
         $title = 'Add Post';
         return view('AddPost')->with('title', $title);
@@ -80,9 +93,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        //show details of single post
+        $title = "Single Post Details";
+        $post_details = Post::find($id);
+        return view('post_details')->with(['title' => $title, 'post_details' => $post_details]);
     }
 
     /**

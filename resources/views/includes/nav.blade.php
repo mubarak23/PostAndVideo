@@ -13,7 +13,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Posts</a></li>
+            <li><a href="{{ url('/posts') }}">Posts</a></li>
             <li><a href="#contact">Videos</a></li>
             <li><a href="{{ url('/add_post') }}" class="pull-right">Add Post</a></li>
             <li><a href="{{ url('add_video') }}" class="pull-right">Add Video</a></li>
