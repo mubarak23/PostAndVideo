@@ -116,7 +116,7 @@ class VideoController extends Controller
         $title = "Single Video Details";
         $video_details = video::find($id);
         //pull list of comment attarch to this post
-        $video_comment = VideoComment::where('post_id', $id)->get();
+        $video_comment = VideoComment::where('video_id', $id)->get();
         return view('single_details')->with(['title' => $title, 'video_details' => $video_details, 'comment' => $video_comment]);
     }
 
@@ -141,9 +141,38 @@ class VideoController extends Controller
      * @param  \App\video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, video $video)
+    public function update(Request $request, $id)
     {
         //
+        //pull that particular post using it id
+        //update it's content
+        $data = $request->all();
+        DB::beginTransaction();
+        try{
+            //find the post
+            $edit_post = Post::find($id);
+            if(!empty($data['name'])){
+                $edit_post->name = $data['name'];
+             }
+             if(!empty($data['email'])){
+                 $edit_post->email = $data['email'];   
+             }
+             if(!empty($data['title'])){
+                 $edit_post->title = $data['title'];   
+             }
+             
+             if($edit_post->save()){
+                DB::commit();
+                return redirect()->route('videos')->with('status', 'Edit Video Successfully');
+             }else{
+                 //send back an error message
+                return redirect()->back()->withInput()->with('status', 'Unable to Edit Video at This Time');
+             }
+
+        }catch(Exception $e){
+            throw $e;
+            DB::rollback();
+        }
     }
 
     /**
@@ -155,5 +184,14 @@ class VideoController extends Controller
     public function destroy(video $video)
     {
         //
+        //pull the particular post and delete it
+        $post_id = VideoComment::destroy($id);
+        if($post_id){
+            return redirect()->route('posts')->with('status', 'Post Deleted Successfully');
+        }else{
+           //send back an error message
+                return redirect()->back()->with('status', 'Unable to Edit Post at This Time'); 
+        }
+
     }
 }

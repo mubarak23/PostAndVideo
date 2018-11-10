@@ -19,6 +19,7 @@
 		    <hr>
 		    <h3>Drop Comment Here</h3>
 		    <form action="/comment_video" enctype="multipart/form-data" method="post">
+		    	<input type="hidden" name="{{ $video_details->id }}" class="form-control">
 		    	<div class="form-group">
 		    		<label>Email Address</label>
 		    		<input type="text" name="email" class="form-control">	

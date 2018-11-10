@@ -37,14 +37,13 @@ Route::post('/post_comment', 'PostCommentController@store');
 
 
 //Video Route
-Route::get('/videos', 'VideoController@index');
+Route::get('/videos', 'VideoController@index')->('videos');
 Route::get('/video/{id}', 'VideoController@show');
 Route::get('/add_video', 'VideoController@AddVideo');
 Route::post('/process_video', 'VideoController@create');
 Route::get('/edit_video/{id}', 'VideoController@create');
 Route::post('/process_editvideo/{id}', 'VideoController@update');
+Route::get('/delete/{id}', 'VideoController@destroy');
 //video comment
-Route::post('/post_comment', 'PostCommentController@store');
-/*Route::get('/add_video', function(){
-		return view('AddVideo');
-});*/
+Route::post('/comment_video', 'VideoCommentController@store');
+
