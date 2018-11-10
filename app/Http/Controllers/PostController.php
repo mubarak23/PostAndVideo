@@ -118,7 +118,7 @@ class PostController extends Controller
         //show a specfic post to edit
         $title = 'Edit Post';
         $post = Post::find($id);
-        return view('edit_post')->with(['post' => $post, 'title' => $title]);
+        return view('EditPost')->with(['post' => $post, 'title' => $title]);
     }
 
     /**
@@ -151,7 +151,7 @@ class PostController extends Controller
              }
              if($edit_post->save()){
                 DB::commit();
-                return redirect()->route('home')->with('status', 'Edit Post Successfully');
+                return redirect()->route('posts')->with('status', 'Edit Post Successfully');
              }else{
                  //send back an error message
                 return redirect()->back()->withInput()->with('status', 'Unable to Edit Post at This Time');
@@ -174,7 +174,7 @@ class PostController extends Controller
         //pull the particular post and delete it
         $post_id = Post::destroy($id);
         if($post_id){
-            return redirect()->route('home')->with('status', 'Post Deleted Successfully');
+            return redirect()->route('posts')->with('status', 'Post Deleted Successfully');
         }else{
            //send back an error message
                 return redirect()->back()->with('status', 'Unable to Edit Post at This Time'); 

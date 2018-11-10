@@ -15,22 +15,22 @@
     return view('welcome');
 });*/
 
-Route::get('/post/{id}', function(){
-		//return view('home');
+Route::get('/', function(){
+		return view('home');
 		
 })->name('home');
 
 //Post Route
 Route::get('/posts', 'PostController@index')->name('posts');
-//Route::get('show_post/{$id}', 'PostController@show');
+//Route::get('/post/{$id}', 'PostController@show');
 
-/*Route::get('/post/{$id}', function(){
-		return $id;
-});
-*/Route::get('/add_post', 'PostController@addPost');
+Route::get('/post/{id}', 'PostController@show');
+
+Route::get('/add_post', 'PostController@addPost');
 Route::post('/process_post', 'PostController@create');
 Route::get('/edit_post/{id}', 'PostController@edit');
 Route::post('process_edit/{id}', 'PostController@update');
+Route::get('/delete/{id}', 'PostController@destroy');
 
 //post Developer
 Route::post('/post_comment', 'PostCommentController@store');

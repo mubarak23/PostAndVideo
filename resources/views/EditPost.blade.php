@@ -41,7 +41,7 @@
         	</div>
         	<div class="form-group">
         		<label>Post Body</label>
-        		<textarea type="text" cols="20" rows="3" value="{{ $post->body }}" placeholder="Enter Post Body Here" class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }} "name="body"></textarea>
+        		<textarea type="text" cols="20" rows="3" value="{{ $post->body }}" placeholder="Enter Post Body Here" class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }} "name="body">{{ $post->body }}</textarea>
         		@if ($errors->has('body'))
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $errors->first('body') }}</strong>
