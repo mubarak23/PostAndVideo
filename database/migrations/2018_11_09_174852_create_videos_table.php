@@ -19,7 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('title');
-            $table->longText('video_name');
+            $table->string('video_name');
             $table->timestamps();
         });
     }

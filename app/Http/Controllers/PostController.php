@@ -44,7 +44,7 @@ class PostController extends Controller
                 $process_store = self::store($data);
                 if($process_store){ 
                     //return home
-                    return redirect('')->route('home')->with('status', 'Add Post Successfully');
+                    return redirect()->route('home')->with('status', 'Add Post Successfully');
                 }else{
                     //send back an error message
                     return redirect()->back()->withInput()->with('status', 'Unable to Add Post at This Time');
@@ -67,7 +67,7 @@ class PostController extends Controller
         //Create a new post model
         $add_post = new Post();
         $add_post->name = $data['name'];
-        $add->email = $data['email'];
+        $add_post->email = $data['email'];
         $add_post->title = $data['title'];
         $add_post->body = $data['body'];
         $add_post->save();
@@ -91,9 +91,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        //show a specfic post to edit
+        $title = 'Edit Post';
+        $post = Post::find($id);
+        return view('edit_post')->with(['post' => $post, 'title' => $title]);
     }
 
     /**
@@ -103,19 +106,56 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request,  $id)
     {
-        //
+        //pull that particular post using it id
+        //update it's content
+        $data = $request->all();
+        DB::beginTransaction();
+        try{
+            //find the post
+            $edit_post = Post::find($id);
+            if(!empty($data['name'])){
+                $edit_post->name = $data['name'];
+             }
+             if(!empty($data['email'])){
+                 $edit_post->email = $data['email'];   
+             }
+             if(!empty($data['title'])){
+                 $edit_post->title = $data['title'];   
+             }
+             if(!empty($data['body'])){
+                  $edit_post->body = $data['body'];  
+             }
+             if($edit_post->save()){
+                DB::commit();
+                return redirect()->route('home')->with('status', 'Edit Post Successfully');
+             }else{
+                 //send back an error message
+                return redirect()->back()->withInput()->with('status', 'Unable to Edit Post at This Time');
+             }
+
+        }catch(Exception $e){
+            throw $e;
+            DB::rollback();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        //pull the particular post and delete it
+        $post_id = Post::destroy($id);
+        if($post_id){
+            return redirect()->route('home')->with('status', 'Post Deleted Successfully');
+        }else{
+           //send back an error message
+                return redirect()->back()->with('status', 'Unable to Edit Post at This Time'); 
+        }
     }
 }
