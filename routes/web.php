@@ -15,8 +15,9 @@
     return view('welcome');
 });*/
 
-Route::get('/', function(){
-		return view('home');
+Route::get('/post/{id}', function(){
+		//return view('home');
+		
 })->name('home');
 
 //Post Route
@@ -25,8 +26,8 @@ Route::get('/posts', 'PostController@index')->name('posts');
 
 /*Route::get('/post/{$id}', function(){
 		return $id;
-});*/
-Route::get('/add_post', 'PostController@addPost');
+});
+*/Route::get('/add_post', 'PostController@addPost');
 Route::post('/process_post', 'PostController@create');
 Route::get('/edit_post/{id}', 'PostController@edit');
 Route::post('process_edit/{id}', 'PostController@update');

@@ -14,7 +14,7 @@
 		@endif
 			@foreach($all_posts as $post)
 			<div class="wall">
-		    <h3><a href="/">{{ $post->title}}</a></h3>
+		    <h3><a href="/post">{{ $post->title}}</a></h3>
 		    <hr>
 		    <a href="#" class="btn btn-warning">Edit</a>
 		    <a href="#"  class="btn btn-danger">Delete</a>
