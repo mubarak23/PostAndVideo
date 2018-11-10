@@ -18,8 +18,8 @@ class PostController extends Controller
     {
         //show all post with pagination
         $title = "All Posts";
-        $posts = Post::all()->pagination(10);
-        return view('posts')->with(['all_posts' => $posts, 'title' => $title ])
+        $posts = Post::paginate(10);
+        return view('posts')->with(['all_posts' => $posts, 'title' => $title ]);
 
     }
     /**
@@ -51,18 +51,20 @@ class PostController extends Controller
                 "title"  => "required|min:5",
                 "body"  => "required|min:5|max:500"
                 ]);
+            //return $data;
 
             DB::beginTransaction();
             try{
                 $process_store = self::store($data);
+                DB::commit();
                 if($process_store){ 
                     //return home
-                    return redirect()->route('home')->with('status', 'Add Post Successfully');
+                    return redirect()->route('posts')->with('status', 'Add Post Successfully');
                 }else{
                     //send back an error message
                     return redirect()->back()->withInput()->with('status', 'Unable to Add Post at This Time');
                 }
-               DB::commit(); 
+                
             }catch(Exception $e){
                    throw $e;
                    DB::rollback(); 
@@ -75,7 +77,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($data);
+    public function store($data)
     {
         //Create a new post model
         $add_post = new Post();
@@ -95,10 +97,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        return $id;
         //show details of single post
         $title = "Single Post Details";
         $post_details = Post::find($id);
-        return view('post_details')->with(['title' => $title, 'post_details' => $post_details]);
+        return view('single_details')->with(['title' => $title, 'post_details' => $post_details]);
     }
 
     /**

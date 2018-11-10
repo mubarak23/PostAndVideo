@@ -20,11 +20,15 @@ Route::get('/', function(){
 })->name('home');
 
 //Post Route
-Route::get('/posts', 'PostController@index');
-Route::get('/show_post/{$id}', 'PostController@show');
+Route::get('/posts', 'PostController@index')->name('posts');
+//Route::get('show_post/{$id}', 'PostController@show');
+
+/*Route::get('/post/{$id}', function(){
+		return $id;
+});*/
 Route::get('/add_post', 'PostController@addPost');
 Route::post('/process_post', 'PostController@create');
-Route::get('edit_post/{id}', 'PostController@edit');
+Route::get('/edit_post/{id}', 'PostController@edit');
 Route::post('process_edit/{id}', 'PostController@update');
 
 
