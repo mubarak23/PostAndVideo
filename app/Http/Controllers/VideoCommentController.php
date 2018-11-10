@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PostComment;
+use App\VideoComment;
 use Illuminate\Http\Request;
 
-class PostCommentController extends Controller
+class VideoCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,6 +36,7 @@ class PostCommentController extends Controller
     public function store(Request $request)
     {
         //
+        //
         $data = $request->all();
         $validatedData = $request->validate([
                 "email"  => "required",
@@ -43,7 +44,7 @@ class PostCommentController extends Controller
                 ]);
           DB::beginTransaction();
             try{
-                $process_comment = new PostComment();
+                $process_comment = new VideoComment();
                 $process_comment->post_id = $data['post_id'];
                 $process_comment->email = $data['email'];
                 $process_comment->comment = $data['comment'];
@@ -60,16 +61,15 @@ class PostCommentController extends Controller
                    throw $e;
                    DB::rollback(); 
             }
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\PostComment  $postComment
+     * @param  \App\VideoComment  $videoComment
      * @return \Illuminate\Http\Response
      */
-    public function show(PostComment $postComment)
+    public function show(VideoComment $videoComment)
     {
         //
     }
@@ -77,10 +77,10 @@ class PostCommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PostComment  $postComment
+     * @param  \App\VideoComment  $videoComment
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostComment $postComment)
+    public function edit(VideoComment $videoComment)
     {
         //
     }
@@ -89,10 +89,10 @@ class PostCommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PostComment  $postComment
+     * @param  \App\VideoComment  $videoComment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostComment $postComment)
+    public function update(Request $request, VideoComment $videoComment)
     {
         //
     }
@@ -100,10 +100,10 @@ class PostCommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PostComment  $postComment
+     * @param  \App\VideoComment  $videoComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostComment $postComment)
+    public function destroy(VideoComment $videoComment)
     {
         //
     }
