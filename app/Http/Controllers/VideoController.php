@@ -14,8 +14,8 @@ class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @return View with data
      */
     public function index()
     {
@@ -39,7 +39,8 @@ class VideoController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *@param  \Illuminate\Http\Request  $request
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -88,8 +89,7 @@ class VideoController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * 
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com> 
      * @return \Illuminate\Http\Response
      */
     public function store($data, $filename)
@@ -106,11 +106,11 @@ class VideoController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\video  $video
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @param  \App\video  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(video $video)
+    public function show($id)
     {
         //show details of single post
         $title = "Single Video Details";
@@ -122,8 +122,8 @@ class VideoController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\video  $video
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @param  \App\video  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -136,9 +136,9 @@ class VideoController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\video  $video
+     * @param  \App\video  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -177,20 +177,20 @@ class VideoController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\video  $video
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @param  \App\video  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(video $video)
     {
         //
         //pull the particular post and delete it
-        $post_id = VideoComment::destroy($id);
+        $post_id = Video::destroy($id);
         if($post_id){
             return redirect()->route('posts')->with('status', 'Post Deleted Successfully');
         }else{
            //send back an error message
-                return redirect()->back()->with('status', 'Unable to Edit Post at This Time'); 
+                return redirect()->back()->with('status', 'Unable to Delete Post at This Time'); 
         }
 
     }

@@ -29,7 +29,7 @@ class VideoCommentController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -99,12 +99,19 @@ class VideoCommentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \App\VideoComment  $videoComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VideoComment $videoComment)
+    public function destroy($id)
     {
         //
+        $post_id = VideoComment::destroy($id);
+        if($post_id){
+            return redirect()->route('posts')->with('status', 'Comment Deleted Successfully');
+        }else{
+           //send back an error message
+                return redirect()->back()->with('status', 'Unable to Delete Comment at This Time'); 
+        }
     }
 }

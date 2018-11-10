@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @return view with data
      */
     public function index()
     {
@@ -24,8 +24,8 @@ class PostController extends Controller
 
     }
     /**
-     * Display a listing of the resource.
-     *
+     * Display a page for adding post.
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @return \Illuminate\Http\Response
      */
     public function addPost()
@@ -74,7 +74,7 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -92,8 +92,8 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Post  $post
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
+     * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -123,9 +123,9 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
@@ -165,7 +165,7 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */

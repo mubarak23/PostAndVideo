@@ -37,7 +37,7 @@ Route::post('/post_comment', 'PostCommentController@store');
 
 
 //Video Route
-Route::get('/videos', 'VideoController@index')->('videos');
+Route::get('/videos', 'VideoController@index')->name('videos');
 Route::get('/video/{id}', 'VideoController@show');
 Route::get('/add_video', 'VideoController@AddVideo');
 Route::post('/process_video', 'VideoController@create');

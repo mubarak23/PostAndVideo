@@ -29,7 +29,7 @@ class PostCommentController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @author  Mubarak Aminu <mubarakaminu340@gmail.com>
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -103,8 +103,15 @@ class PostCommentController extends Controller
      * @param  \App\PostComment  $postComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostComment $postComment)
+    public function destroy($id)
     {
         //
+        $post_id = PostComment::destroy($id);
+        if($post_id){
+            return redirect()->route('posts')->with('status', 'Comment Deleted Successfully');
+        }else{
+           //send back an error message
+                return redirect()->back()->with('status', 'Unable to Delete Comment at This Time'); 
+        }
     }
 }
