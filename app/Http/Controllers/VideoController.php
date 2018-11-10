@@ -17,6 +17,19 @@ class VideoController extends Controller
      */
     public function index()
     {
+        //show all post with pagination
+        $title = "All Videos";
+        $videos = Video::paginate(10);
+        return view('videos')->with(['all_videos' => $videos, 'title' => $title ]);
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function AddVideo()
+    {
         //show the add post page
         $title = 'Add Video';
         return view('AddVideo')->with('title', $title);
@@ -75,7 +88,7 @@ class VideoController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function store($data $filename)
+    public function store($data, $filename)
     {
         //Create a new post model
         $add_video = new Video();
